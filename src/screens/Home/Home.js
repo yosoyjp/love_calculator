@@ -33,7 +33,7 @@ class HomePage extends Component {
     renderForm() {
         return (
             <div className="home-page-form">
-                <Typography type="subtitle" text="¡Digita tu nombre y el de tu crush para saber que tan compatible son!" />
+                <Typography classNames="subtitle-home" type="subtitle" text="¡Digita tu nombre y el de tu crush para saber que tan compatible son!" />
                 <Typography type="label" text="Version 2" />
                 <div className="container_inputs" >
                     <Input
