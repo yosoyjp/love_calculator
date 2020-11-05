@@ -1,6 +1,6 @@
 .container-home-page {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     display: flex;
     overflow: hidden;
     flex-direction: column;
@@ -9,14 +9,12 @@
 }
 
 .home_page-container-app {
-    height: 60vh;
     width: 100vw;
     display: flex;
 }
 
 .home-page-form{
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -69,7 +67,7 @@
 }
 
 .container-loader{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -78,4 +76,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media only screen and (max-width: 920px) {
+
+    body{
+        padding: 12px;
+    }
+    
+    .title-home {
+        text-align: center;
+        font-size: 2em;
+    }
+
+    .container-results {
+        width: 300px;
+        height: 300px;
+    }
+
+    .subtitle-home {
+        text-align: center;
+    }
+
+    .container_inputs {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .container_inputs > div {
+        width: 80% !important;
+        margin-top: 10px;
+    }
 }
