@@ -1,22 +1,39 @@
 import React, {Component} from 'react';
+import Loader from 'react-loader-spinner'
 
 import './home.css';
 import Input from '../../components/Input/Input';
-import Image from '../../components/Image/Image';
 import Button from '../../components/Button/Button';
+import Corazon from '../../components/Corazon/Corazon';
+import { getResults } from '../../service/love-calculator';
 import Typography from '../../components/Typography/Typography';
-import Portada from '../../assets/images/5af2a0d4be515.png';
+
 
 class HomePage extends Component {
-    state = {
-        nameMe: '',
-        nameYou: ''
-    };
+    constructor(){
+        super();
+        this.state = {
+            nameMe: '',
+            nameYou: '',
+            result: 0,
+            loading: false,
+        };
+
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+    
+
+    async onSubmit(){
+        this.setState({loading: true});
+        const { nameMe, nameYou } = this.state;
+        const results = await getResults(nameMe, nameYou);
+        this.setState({result: results.percentage, loading: false});
+    }
 
     renderForm() {
         return (
             <div className="home-page-form">
-                <Typography type="subtitle" text="Digita tu nombre y el de tu lof para saber que tan compatible son" />
+                <Typography type="subtitle" text="Digita tu nombre y el de tu crush para saber que tan compatible son" />
                 <div className="container_inputs" >
                     <Input
                         className="input-name"
@@ -32,15 +49,7 @@ class HomePage extends Component {
                     />
                 </div>
                 
-                <Button classNames="button-material" >Calcular</Button>
-            </div>
-        );
-    }
-
-    renderResult(){
-        return (
-            <div className="home-page-result">
-
+                <Button onClick={this.onSubmit} classNames="button-material" >Calcular</Button>
             </div>
         );
     }
@@ -48,12 +57,23 @@ class HomePage extends Component {
     render(){
         return (
             <div className="container-home-page" >
-                <Image src={Portada} classNames="portada-image" alt="Calculadora del amor" />
-                <Typography type="title" text="Calcula que tanto te ama..." />
+                <Typography type="title" classNames="title-home" text="Calcula que tanto te ama..." />
+                <div className="container-results" >
+                    <Corazon percentage={this.state.result} />
+                </div>
                 <div className="home_page-container-app" >
                     {this.renderForm()}
-                    {this.renderResult()}
                 </div>
+                {(this.state.loading) && (
+                    <div className="container-loader" >
+                        <Loader
+                            type="Puff"
+                            color="#ffffff"
+                            height={100}
+                            width={100}
+                        />
+                    </div>
+                )}
             </div>
         )
     }
