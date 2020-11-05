@@ -1,0 +1,26 @@
+.heart-image-container {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart-image-container > img{
+    width: 75%;
+    height: auto;
+    object-fit: contain;
+}
+
+.heart-image-container-result {
+    position: absolute;
+}
+
+.result-heart-percentage {
+    color: #333333;
+    font-size: 4em;
+}
+
+.symbol-heart-percentage {
+    color: #333333;
+}
